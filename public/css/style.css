@@ -1,0 +1,2077 @@
+/* ==========================================================================
+   PlantDoc & OpenCropCare - Unified Precision Agro-Tech Design System
+   Inspired by PlantDoc (plantdoc.in) • Clean, Modern, Field-Legible & Elegant
+   ========================================================================== */
+
+:root {
+    /* PlantDoc Organic Nature Color Palette */
+    --color-primary: #2d6a4f;         /* Signature Forest Emerald */
+    --color-primary-hover: #1b4332;   /* Deep Forest */
+    --color-primary-dark: #1b4332;
+    --color-primary-light: #e9f5ec;   /* Soft Sage Tint */
+    
+    --color-accent: #40916c;          /* Vibrant Leaf */
+    --color-accent-light: #52b788;
+    --color-leaf-bright: #74c69d;
+    --color-leaf-pale: #d8f3dc;
+    
+    /* Semantic Status Accents */
+    --color-gold: #d97706;
+    --color-gold-bg: #fef3c7;
+    --color-danger: #dc2626;
+    --color-danger-bg: #fef2f2;
+    --color-info: #0284c7;
+    --color-info-bg: #f0f9ff;
+    
+    /* Neutrals & Surfaces (Clean PlantDoc organic sage background) */
+    --color-bg-main: #f7faf7;
+    --color-card-bg: #ffffff;
+    --color-text-main: #1c2820;       /* Rich dark slate / forest */
+    --color-text-muted: #5c7064;      /* Organic muted gray-green */
+    --color-border: #e2ece5;          /* Crisp 1px subtle mint border */
+    --color-border-hover: #b7d5c3;
+    
+    /* Radii & Shadows */
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
+    --radius-pill: 9999px;
+    
+    --shadow-soft: 0 2px 8px -1px rgba(28, 40, 32, 0.05), 0 1px 3px -1px rgba(0, 0, 0, 0.03);
+    --shadow-card: 0 4px 16px -2px rgba(45, 106, 79, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+    --shadow-hover: 0 12px 28px -4px rgba(45, 106, 79, 0.12), 0 4px 10px -2px rgba(0, 0, 0, 0.04);
+    --shadow-glow: 0 0 20px rgba(64, 145, 108, 0.25);
+    --shadow-button: 0 4px 14px -2px rgba(45, 106, 79, 0.35);
+    
+    /* Typography Tokens */
+    --font-main: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-display: 'Playfair Display', Georgia, "Times New Roman", serif;
+    --font-size-base: 13.5px;
+}
+
+/* Base Styles */
+html {
+    font-size: var(--font-size-base);
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--color-text-main);
+    background-color: var(--color-bg-main);
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(82, 183, 136, 0.05) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(45, 106, 79, 0.04) 0px, transparent 50%);
+    background-attachment: fixed;
+    line-height: 1.55;
+    font-size: 0.88rem;
+    letter-spacing: -0.012em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* PlantDoc Headings: Elegant Serif Display with Compact Sizes */
+h1, h2, h3, .font-display, .plantdoc-title {
+    font-family: var(--font-display);
+    color: var(--color-primary-dark);
+    letter-spacing: -0.02em;
+    font-weight: 700;
+}
+
+h1 { font-size: 1.55rem !important; line-height: 1.25 !important; }
+h2 { font-size: 1.32rem !important; line-height: 1.3 !important; }
+h3 { font-size: 1.15rem !important; line-height: 1.35 !important; }
+h4 { font-family: var(--font-main); font-size: 0.98rem !important; font-weight: 700; line-height: 1.35 !important; }
+h5 { font-family: var(--font-main); font-size: 0.90rem !important; font-weight: 600; line-height: 1.4 !important; }
+h6 { font-family: var(--font-main); font-size: 0.82rem !important; font-weight: 600; line-height: 1.4 !important; }
+p { font-size: 0.85rem; line-height: 1.55; }
+.small { font-size: 0.78rem !important; line-height: 1.45; }
+.extra-small { font-size: 0.70rem !important; line-height: 1.4; }
+
+/* Outdoor High Contrast Mode for Sun Glare */
+body.high-contrast-mode {
+    --color-bg-main: #ffffff;
+    --color-card-bg: #ffffff;
+    --color-text-main: #000000;
+    --color-text-muted: #111827;
+    --color-border: #000000;
+    filter: contrast(1.15);
+}
+
+body.high-contrast-mode .card,
+body.high-contrast-mode .upload-dropzone,
+body.high-contrast-mode .table,
+body.high-contrast-mode .form-control {
+    border: 2px solid #000000 !important;
+}
+
+body.large-text-mode {
+    --font-size-base: 1.12rem;
+}
+
+/* ==========================================================================
+   Header & Navigation (Light Frosted Glassmorphism like PlantDoc)
+   ========================================================================== */
+.navbar-glass {
+    background: rgba(255, 255, 255, 0.94) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(226, 236, 229, 0.9) !important;
+    min-height: 56px;
+    transition: all 0.25s ease;
+}
+
+.brand-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #2d6a4f 0%, #40916c 100%);
+    box-shadow: 0 4px 10px rgba(45, 106, 79, 0.25);
+    font-size: 1.2rem;
+}
+
+.brand-title {
+    font-family: var(--font-main);
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--color-primary-dark);
+    letter-spacing: -0.025em;
+}
+
+.brand-title .accent {
+    color: var(--color-accent);
+}
+
+.nav-link {
+    font-family: var(--font-main);
+    font-weight: 500;
+    font-size: 0.84rem;
+    color: #374151 !important;
+    padding: 0.35rem 0.65rem !important;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.nav-link i {
+    color: var(--color-accent) !important;
+}
+
+.nav-link:hover {
+    color: var(--color-primary) !important;
+    background: var(--color-primary-light);
+    transform: translateY(-1px);
+}
+
+.nav-link.active {
+    color: var(--color-primary) !important;
+    background: var(--color-primary-light);
+    font-weight: 700;
+}
+
+/* Mobile Toggler */
+.navbar-toggler {
+    border: 1px solid var(--color-border) !important;
+    border-radius: 8px;
+    padding: 4px 8px;
+    color: var(--color-primary-dark);
+}
+
+.navbar-toggler-icon {
+    filter: invert(25%) sepia(35%) saturate(700%) hue-rotate(105deg);
+}
+
+/* User Avatar & Dropdown */
+.user-avatar-badge {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 11px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(45, 106, 79, 0.25);
+    flex-shrink: 0;
+}
+
+/* Utility Buttons in Navbar */
+.nav-util-btn {
+    border: 1px solid var(--color-border);
+    background: #ffffff;
+    color: #4b5563;
+    border-radius: var(--radius-pill);
+    padding: 3px 9px;
+    font-size: 0.78rem;
+    transition: all 0.2s ease;
+}
+
+.nav-util-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-primary);
+    background: var(--color-primary-light);
+}
+
+/* Offline Banner Pill */
+.offline-status-pill {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ==========================================================================
+   PlantDoc Hero & Section Banners
+   ========================================================================== */
+.plantdoc-hero {
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 32px 24px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.plantdoc-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #2d6a4f 0%, #40916c 50%, #74c69d 100%);
+}
+
+.plantdoc-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    border: 1px solid #d2ebd8;
+    padding: 4px 14px;
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 12px;
+}
+
+.plantdoc-hero-title {
+    font-family: var(--font-display);
+    font-size: 1.85rem !important;
+    font-weight: 700;
+    color: var(--color-primary-dark);
+    margin-bottom: 8px;
+    letter-spacing: -0.025em;
+}
+
+.plantdoc-hero-sub {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+    line-height: 1.5;
+}
+
+/* Dual Mode Segmented Switcher (Upload vs Describe Symptoms) */
+.plantdoc-tab-switcher {
+    display: inline-flex;
+    background: #edf3ee;
+    padding: 4px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border);
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.plantdoc-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 18px;
+    border-radius: var(--radius-pill);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #4b5563;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+}
+
+.plantdoc-tab-btn:hover {
+    color: var(--color-primary);
+}
+
+.plantdoc-tab-btn.active {
+    background: #ffffff;
+    color: var(--color-primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   Cards & Content Surfaces
+   ========================================================================== */
+.card-custom {
+    background: #ffffff;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease;
+    overflow: hidden;
+}
+
+.card-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--color-border-hover);
+}
+
+.card-header-styled {
+    background: #ffffff;
+    border-bottom: 1px solid var(--color-border);
+    padding: 1rem 1.25rem;
+}
+
+/* Gradient Leaf Banner */
+.bg-gradient-leaf {
+    background: linear-gradient(135deg, #2d6a4f 0%, #3a8262 60%, #40916c 100%) !important;
+}
+
+.text-leaf-light {
+    color: var(--color-leaf-pale) !important;
+}
+
+.text-forest {
+    color: var(--color-primary) !important;
+}
+
+.bg-forest {
+    background-color: var(--color-primary) !important;
+}
+
+/* ==========================================================================
+   Interactive Crop Selector Chips
+   ========================================================================== */
+.crop-chip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+}
+
+.crop-chip-item {
+    cursor: pointer;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: #ffffff;
+    padding: 10px 8px;
+    text-align: center;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+}
+
+.crop-chip-item:hover {
+    border-color: var(--color-accent);
+    background-color: var(--color-primary-light);
+    transform: translateY(-2px);
+}
+
+.crop-chip-item.active {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary-light);
+    box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
+    font-weight: 700;
+}
+
+.crop-chip-item .crop-icon {
+    font-size: 1.6rem;
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* ==========================================================================
+   Upload Dropzone (PlantDoc Style)
+   ========================================================================== */
+.upload-dropzone {
+    background-color: #f9fcf9;
+    border: 2px dashed #b7d5c3;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+    padding: 24px 16px;
+}
+
+.upload-dropzone:hover, .upload-dropzone.dragover {
+    border-color: var(--color-primary);
+    background-color: #f0f7f2;
+    box-shadow: var(--shadow-glow);
+}
+
+.upload-file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 5;
+}
+
+/* Scanner Animation */
+.leaf-scan-container {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    border-radius: var(--radius-md);
+    background: #000;
+}
+
+.leaf-scanner-beam {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #52b788, #74c69d, transparent);
+    box-shadow: 0 0 15px #52b788, 0 0 25px #40916c;
+    animation: scanAnimation 2s ease-in-out infinite alternate;
+    z-index: 10;
+    display: none;
+}
+
+.is-scanning .leaf-scanner-beam {
+    display: block;
+}
+
+@keyframes scanAnimation {
+    0% { top: 0%; }
+    100% { top: 96%; }
+}
+
+/* ==========================================================================
+   Symptom Analyzer Chips & Triage Form
+   ========================================================================== */
+.symptom-tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.symptom-tag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    font-size: 0.78rem;
+    font-weight: 500;
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    user-select: none;
+}
+
+.symptom-tag-chip:hover {
+    border-color: var(--color-accent);
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+.symptom-tag-chip.selected {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(45, 106, 79, 0.25);
+}
+
+/* ==========================================================================
+   PlantDoc Feature Showcase ("Why Choose Plant Doc?")
+   ========================================================================== */
+.plantdoc-features-section {
+    margin: 36px 0 24px 0;
+}
+
+.plantdoc-feature-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 20px 18px;
+    height: 100%;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.22s ease;
+}
+
+.plantdoc-feature-card:hover {
+    border-color: var(--color-border-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+}
+
+.feature-icon-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+    border: 1px solid #d2ebd8;
+}
+
+.plantdoc-feature-title {
+    font-weight: 700;
+    font-size: 0.94rem;
+    color: var(--color-primary-dark);
+    margin-bottom: 6px;
+}
+
+.plantdoc-feature-desc {
+    font-size: 0.80rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Diagnosis Results (PlantDoc Structure: Organic vs Chemical vs Prevention)
+   ========================================================================== */
+.treatment-card-organic {
+    background: #f4faf5;
+    border: 1px solid #d2ebd8;
+    border-left: 4px solid var(--color-primary);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin-bottom: 14px;
+}
+
+.treatment-card-chemical {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-left: 4px solid #0284c7;
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin-bottom: 14px;
+}
+
+.treatment-card-prevention {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-left: 4px solid #d97706;
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin-bottom: 14px;
+}
+
+.treatment-title-organic {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 0.90rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.treatment-title-chemical {
+    color: #0369a1;
+    font-weight: 700;
+    font-size: 0.90rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.treatment-title-prevention {
+    color: #b45309;
+    font-weight: 700;
+    font-size: 0.90rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn-leaf, .btn-primary-action {
+    background: linear-gradient(135deg, #2d6a4f 0%, #40916c 100%) !important;
+    border: none;
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-radius: var(--radius-pill);
+    padding: 8px 20px;
+    box-shadow: var(--shadow-button);
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-leaf:hover, .btn-primary-action:hover {
+    background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(45, 106, 79, 0.38);
+    color: #ffffff !important;
+}
+
+.btn-outline-leaf {
+    border: 1.5px solid var(--color-primary);
+    color: var(--color-primary) !important;
+    background: #ffffff;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-radius: var(--radius-pill);
+    padding: 7px 18px;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-leaf:hover {
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark) !important;
+}
+
+/* ==========================================================================
+   Auth (Login & Register Cards)
+   ========================================================================== */
+.login-hero-container {
+    min-height: calc(100vh - 65px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+    background: radial-gradient(at 20% 0%, rgba(82, 183, 136, 0.08) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, rgba(45, 106, 79, 0.06) 0px, transparent 40%),
+                #f7faf7;
+}
+
+.login-card-luxury {
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-hover);
+    overflow: hidden;
+    max-width: 460px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.login-card-top {
+    padding: 24px 24px 14px 24px;
+    text-align: center;
+    background: radial-gradient(ellipse at top, rgba(82, 183, 136, 0.12), transparent 70%);
+}
+
+.login-emblem {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #2d6a4f, #40916c);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    box-shadow: 0 4px 12px rgba(45, 106, 79, 0.25);
+    margin-bottom: 10px;
+}
+
+.login-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: var(--color-primary-dark);
+    margin-bottom: 4px;
+}
+
+.login-subtitle {
+    font-size: 0.80rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+}
+
+.auth-toggle-pill {
+    display: flex;
+    background: #edf3ee;
+    padding: 3px;
+    border-radius: var(--radius-pill);
+    margin: 16px 0 16px 0;
+    border: 1px solid var(--color-border);
+}
+
+.auth-toggle-btn {
+    flex: 1;
+    padding: 6px 10px;
+    border-radius: var(--radius-pill);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    border: none;
+    background: transparent;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+.auth-toggle-btn.active {
+    background: #ffffff;
+    color: var(--color-primary);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    font-weight: 700;
+}
+
+.demo-profile-tile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: #ffffff;
+    border: 1.5px solid var(--color-border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    margin-bottom: 8px;
+    text-align: left;
+    width: 100%;
+    gap: 10px;
+}
+
+.demo-profile-tile:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary-light);
+    transform: translateY(-1px);
+}
+
+.demo-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+    background: var(--color-primary-light);
+}
+
+.form-control-sleek, .form-control {
+    border: 1.5px solid #d2ded5;
+    border-radius: 9px;
+    font-size: 0.84rem;
+    padding: 0.45rem 0.85rem;
+    transition: all 0.2s ease;
+    background-color: #ffffff;
+}
+
+.form-control-sleek:focus, .form-control:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(64, 145, 108, 0.15);
+    outline: none;
+}
+
+.input-icon-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.input-icon-wrapper i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 0.92rem;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.input-icon-wrapper .form-control,
+.input-icon-wrapper .form-control-sleek {
+    padding-left: 36px !important;
+}
+
+/* ==========================================================================
+   Voice Equalizer & Audio Visualizer
+   ========================================================================== */
+.audio-visualizer {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    height: 16px;
+}
+
+.audio-bar {
+    width: 3px;
+    background: #ffffff;
+    border-radius: 2px;
+    animation: audioWave 1s ease-in-out infinite alternate;
+}
+
+.audio-bar:nth-child(1) { height: 6px; animation-delay: 0.1s; }
+.audio-bar:nth-child(2) { height: 16px; animation-delay: 0.3s; }
+.audio-bar:nth-child(3) { height: 10px; animation-delay: 0.2s; }
+.audio-bar:nth-child(4) { height: 14px; animation-delay: 0.4s; }
+
+@keyframes audioWave {
+    0% { transform: scaleY(0.3); }
+    100% { transform: scaleY(1); }
+}
+
+/* Circular Confidence Meter */
+.confidence-gauge-container {
+    position: relative;
+    width: 82px;
+    height: 82px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.confidence-gauge-circle {
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+
+.confidence-text-inside {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* ==========================================================================
+   Mobile Bottom Nav & Print Styles
+   ========================================================================== */
+.mobile-bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-top: 1px solid var(--color-border);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+    z-index: 1030;
+    padding: 6px 12px;
+}
+
+@media (max-width: 768px) {
+    .mobile-bottom-nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    body {
+        padding-bottom: 74px;
+    }
+}
+
+.mobile-nav-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+}
+
+.mobile-nav-btn i {
+    font-size: 1.15rem;
+    margin-bottom: 2px;
+}
+
+.mobile-nav-btn.active, .mobile-nav-btn:hover {
+    color: var(--color-primary);
+}
+
+.mobile-nav-btn-highlight {
+    background: linear-gradient(135deg, #2d6a4f, #40916c);
+    color: #ffffff !important;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-12px);
+    box-shadow: 0 4px 14px rgba(45, 106, 79, 0.4);
+}
+
+.mobile-nav-btn-highlight i {
+    font-size: 1.35rem;
+}
+
+/* Clean Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Print Friendly */
+@media print {
+    .navbar, footer, .btn, .mobile-bottom-nav, #feedbackSection, .no-print {
+        display: none !important;
+    }
+    body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 12pt;
+    }
+    .card {
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+    }
+}
+
+/* ==========================================================================
+   PlantDoc Landing Page (Exact Match to User Reference Screenshot)
+   ========================================================================== */
+.plantdoc-nav-emblem {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    background: #2d6a4f;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+.plantdoc-nav-title {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #1c2820;
+    letter-spacing: -0.02em;
+}
+
+.btn-plantdoc-nav {
+    background: #2d6a4f !important;
+    color: #ffffff !important;
+    border-radius: 6px !important;
+    padding: 7px 18px !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    border: none !important;
+    transition: all 0.2s ease;
+}
+
+.btn-plantdoc-nav:hover {
+    background: #1b4332 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(45, 106, 79, 0.25);
+}
+
+.plantdoc-hero-wrapper {
+    text-align: center;
+    padding: 60px 20px 48px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.plantdoc-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 16px;
+    background: #eaf5ee;
+    color: #2d6a4f;
+    border: 1px solid #d4ebd9;
+    border-radius: 9999px;
+    font-size: 0.80rem;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.plantdoc-main-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 3.1rem !important;
+    font-weight: 700;
+    color: #1a422d;
+    line-height: 1.15 !important;
+    letter-spacing: -0.025em;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .plantdoc-main-heading {
+        font-size: 2.1rem !important;
+    }
+}
+
+.plantdoc-main-sub {
+    font-size: 0.95rem;
+    color: #526056;
+    max-width: 630px;
+    margin: 0 auto 32px auto;
+    line-height: 1.6;
+}
+
+.btn-plantdoc-primary {
+    background: #2d6a4f !important;
+    color: #ffffff !important;
+    border-radius: 8px !important;
+    padding: 10px 24px !important;
+    font-weight: 600 !important;
+    font-size: 0.90rem !important;
+    border: none !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(45, 106, 79, 0.25);
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-plantdoc-primary:hover {
+    background: #1b4332 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(45, 106, 79, 0.35);
+    color: #ffffff !important;
+}
+
+.btn-plantdoc-outline {
+    background: #ffffff !important;
+    color: #2d6a4f !important;
+    border: 1.5px solid #2d6a4f !important;
+    border-radius: 8px !important;
+    padding: 9px 24px !important;
+    font-weight: 600 !important;
+    font-size: 0.90rem !important;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-plantdoc-outline:hover {
+    background: #eaf5ee !important;
+    color: #1b4332 !important;
+}
+
+.plantdoc-action-card {
+    background: #ffffff;
+    border: 1px solid #edf2ee;
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    transition: all 0.2s ease;
+    height: 100%;
+}
+
+.plantdoc-action-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(45, 106, 79, 0.08);
+    border-color: #b7d5c3;
+    color: inherit;
+}
+
+.action-icon-box {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    background: #eaf5ee;
+    color: #2d6a4f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.action-title {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: #1c2820;
+    margin-bottom: 2px;
+}
+
+.action-desc {
+    font-size: 0.78rem;
+    color: #6b7280;
+    line-height: 1.4;
+}
+
+.plantdoc-why-section {
+    padding: 60px 20px 80px 20px;
+    text-align: center;
+}
+
+.plantdoc-why-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.15rem !important;
+    font-weight: 700;
+    color: #1a422d;
+    margin-bottom: 10px;
+}
+
+.plantdoc-why-sub {
+    font-size: 0.90rem;
+    color: #6b7280;
+    max-width: 660px;
+    margin: 0 auto 40px auto;
+    line-height: 1.55;
+}
+
+.feature-card-box {
+    background: #ffffff;
+    border: 1px solid #edf2ee;
+    border-radius: 14px;
+    padding: 24px 20px;
+    text-align: left;
+    height: 100%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    transition: all 0.22s ease;
+}
+
+.feature-card-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(45, 106, 79, 0.07);
+    border-color: #b7d5c3;
+}
+
+.feature-icon-square {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: #eaf5ee;
+    color: #2d6a4f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    margin-bottom: 16px;
+}
+
+.feature-card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.05rem !important;
+    color: #1a422d;
+    margin-bottom: 8px;
+}
+
+.feature-card-desc {
+    font-size: 0.80rem;
+    color: #6b7280;
+    line-height: 1.55;
+    margin-bottom: 0;
+}
+
+.plantdoc-footer {
+    border-top: 1px solid #edf2ee !important;
+    font-size: 0.82rem;
+}
+
+/* ==========================================================================
+   OpenCropCare Minimal Landing Page
+   ========================================================================== */
+.landing-page {
+    --landing-ink: #173b2c;
+    --landing-green: #286747;
+    --landing-muted: #68776d;
+    background: #fbfcf8;
+}
+
+.landing-container {
+    max-width: 1120px;
+}
+
+.landing-hero {
+    overflow: hidden;
+    padding: clamp(3.5rem, 8vw, 7rem) 0 clamp(4rem, 7vw, 6.5rem);
+    background:
+        radial-gradient(ellipse at 86% 45%, rgba(221, 237, 212, 0.56), transparent 37%),
+        #fbfcf8;
+}
+
+.landing-copy {
+    position: relative;
+    z-index: 1;
+}
+
+.landing-eyebrow,
+.section-overline {
+    color: var(--landing-green);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+
+.landing-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 1.35rem;
+}
+
+.eyebrow-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #91b86b;
+    box-shadow: 0 0 0 4px rgba(145, 184, 107, 0.15);
+}
+
+.landing-page .landing-title {
+    margin: 0 0 1.2rem;
+    color: var(--landing-ink);
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5.2vw, 4.35rem) !important;
+    font-weight: 600;
+    letter-spacing: -0.055em;
+    line-height: 1.08 !important;
+}
+
+.landing-title span {
+    color: #6c8d53;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.landing-description {
+    max-width: 450px;
+    margin: 0 0 1.7rem;
+    color: var(--landing-muted);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.landing-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.35rem;
+    flex-wrap: wrap;
+}
+
+.landing-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.15rem;
+    padding: 0.9rem 1.2rem;
+    border: 1px solid var(--landing-green);
+    border-radius: 6px;
+    background: var(--landing-green);
+    color: #fff;
+    font-size: 0.87rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 180ms ease, transform 180ms ease;
+}
+
+.landing-button:hover {
+    transform: translateY(-2px);
+    background: #194d34;
+    color: #fff;
+}
+
+.landing-button:focus-visible,
+.landing-text-link:focus-visible {
+    outline: 3px solid #a8c87e;
+    outline-offset: 3px;
+}
+
+.landing-button i,
+.landing-text-link i {
+    font-size: 0.78rem;
+}
+
+.landing-text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--landing-ink);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.landing-text-link:hover {
+    color: var(--landing-green);
+}
+
+.landing-note {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.75rem;
+    color: #758177;
+    font-size: 0.75rem;
+}
+
+.landing-note i {
+    color: #799b59;
+}
+
+.plant-visual {
+    position: relative;
+    display: flex;
+    min-height: 430px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #e8efe0;
+    isolation: isolate;
+}
+
+.plant-visual::before,
+.plant-visual::after {
+    position: absolute;
+    z-index: -1;
+    border: 1px solid rgba(40, 103, 71, 0.12);
+    border-radius: 50%;
+    content: "";
+}
+
+.plant-visual::before {
+    width: 330px;
+    height: 330px;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.plant-visual::after {
+    width: 440px;
+    height: 440px;
+}
+
+.visual-orbit {
+    position: absolute;
+    z-index: -1;
+    border: 1px solid rgba(40, 103, 71, 0.09);
+    border-radius: 50%;
+}
+
+.orbit-one {
+    width: 540px;
+    height: 540px;
+}
+
+.orbit-two {
+    width: 650px;
+    height: 650px;
+}
+
+.visual-kicker {
+    position: absolute;
+    top: 1.6rem;
+    left: 1.7rem;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: #53725d;
+    font-size: 0.61rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+}
+
+.visual-kicker span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #82a95b;
+}
+
+.visual-leaf {
+    width: min(58%, 235px);
+    transform: rotate(-8deg);
+    filter: drop-shadow(0 18px 18px rgba(38, 77, 49, 0.13));
+}
+
+.visual-leaf svg {
+    display: block;
+    width: 100%;
+    overflow: visible;
+}
+
+.leaf-shape {
+    fill: #789963;
+    stroke: #527a4d;
+    stroke-width: 2;
+}
+
+.leaf-vein {
+    fill: none;
+    stroke: #d7e2b7;
+    stroke-linecap: round;
+    stroke-width: 3;
+}
+
+.visual-caption {
+    position: absolute;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 8px 24px rgba(40, 65, 44, 0.08);
+    backdrop-filter: blur(8px);
+}
+
+.caption-icon {
+    display: grid;
+    width: 32px;
+    height: 32px;
+    place-items: center;
+    border-radius: 50%;
+    background: #eff4e8;
+    color: #527a4d;
+}
+
+.visual-caption strong,
+.visual-caption small {
+    display: block;
+}
+
+.visual-caption strong {
+    color: #284232;
+    font-size: 0.72rem;
+}
+
+.visual-caption small {
+    margin-top: 2px;
+    color: #849087;
+    font-size: 0.64rem;
+}
+
+.visual-stamp {
+    position: absolute;
+    bottom: 1.65rem;
+    left: 1.6rem;
+    color: #69816b;
+    font-size: 0.57rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.visual-stamp i {
+    margin-right: 0.3rem;
+}
+
+.landing-steps {
+    padding: clamp(3.5rem, 7vw, 5.5rem) 0 3.5rem;
+    border-top: 1px solid #edf0e9;
+    background: #fff;
+}
+
+.steps-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 1.8rem;
+}
+
+.steps-heading h2 {
+    margin: 0.6rem 0 0;
+    color: var(--landing-ink);
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.35rem) !important;
+    letter-spacing: -0.04em;
+}
+
+.steps-heading > p {
+    max-width: 340px;
+    margin: 0 0 0.2rem;
+    color: var(--landing-muted);
+    font-size: 0.83rem;
+    line-height: 1.7;
+}
+
+.step-card {
+    position: relative;
+    height: 100%;
+    min-height: 190px;
+    padding: 1.25rem 1.3rem;
+    border: 1px solid #edf0e9;
+    border-radius: 6px;
+    background: #fff;
+    transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.step-card:hover {
+    transform: translateY(-3px);
+    border-color: #cad9c1;
+}
+
+.step-number {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.3rem;
+    color: #a2afa1;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.step-icon {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    margin-bottom: 1.05rem;
+    place-items: center;
+    border-radius: 6px;
+    background: #f0f4eb;
+    color: #57784e;
+    font-size: 0.9rem;
+}
+
+.step-card h3 {
+    margin: 0 0 0.4rem;
+    color: #253c2d;
+    font-family: var(--font-main);
+    font-size: 0.9rem !important;
+    font-weight: 700;
+}
+
+.step-card p {
+    max-width: 270px;
+    margin: 0;
+    color: #768078;
+    font-size: 0.76rem;
+    line-height: 1.65;
+}
+
+.landing-disclaimer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.6rem;
+    color: #889188;
+    font-size: 0.68rem;
+    text-align: center;
+}
+
+.landing-disclaimer i {
+    color: #8ca576;
+}
+
+@media (max-width: 767.98px) {
+    .landing-hero {
+        padding-top: 3.4rem;
+    }
+
+    .landing-description {
+        font-size: 0.92rem;
+    }
+
+    .plant-visual {
+        min-height: 330px;
+    }
+
+    .steps-heading {
+        align-items: start;
+        flex-direction: column;
+        gap: 0.7rem;
+    }
+
+    .steps-heading > p {
+        max-width: 440px;
+    }
+
+    .step-card {
+        min-height: 165px;
+    }
+}
+
+@media (max-width: 420px) {
+    .landing-actions {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .plant-visual {
+        min-height: 290px;
+    }
+
+    .visual-kicker {
+        top: 1.1rem;
+        left: 1.1rem;
+    }
+
+    .visual-stamp {
+        bottom: 1.2rem;
+        left: 1.1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .landing-page *,
+    .landing-page *::before,
+    .landing-page *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==========================================================================
+   OpenCropCare Sign-In
+   ========================================================================== */
+.auth-page {
+    min-height: calc(100vh - 65px);
+    padding: clamp(1.5rem, 4vw, 3.5rem) 1rem !important;
+    background:
+        radial-gradient(ellipse at 15% 15%, rgba(149, 181, 123, 0.13), transparent 38%),
+        #f6f8f3;
+}
+
+.auth-layout {
+    display: grid;
+    width: min(100%, 1000px);
+    min-height: 570px;
+    grid-template-columns: minmax(0, 0.95fr) minmax(390px, 1.05fr);
+    overflow: hidden;
+    border: 1px solid #e5eae1;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 22px 70px rgba(33, 60, 39, 0.1);
+}
+
+.auth-showcase {
+    position: relative;
+    display: flex;
+    min-height: 570px;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 1.7rem;
+    background:
+        radial-gradient(ellipse at 75% 70%, rgba(119, 157, 92, 0.34), transparent 47%),
+        linear-gradient(145deg, #183c2d 0%, #24533a 56%, #315e40 100%);
+    color: #fff;
+}
+
+.auth-showcase::after {
+    position: absolute;
+    right: -105px;
+    bottom: -130px;
+    width: 350px;
+    height: 350px;
+    border: 1px solid rgba(231, 242, 216, 0.16);
+    border-radius: 50%;
+    box-shadow: 0 0 0 35px rgba(231, 242, 216, 0.035), 0 0 0 75px rgba(231, 242, 216, 0.03);
+    content: "";
+    pointer-events: none;
+}
+
+.auth-home-link {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 0.55rem;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.76rem;
+    text-decoration: none;
+    transition: color 160ms ease;
+}
+
+.auth-home-link:hover {
+    color: #fff;
+}
+
+.auth-showcase-content {
+    position: relative;
+    z-index: 1;
+    max-width: 350px;
+    padding: 2.7rem 0;
+}
+
+.auth-showcase-mark {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 2rem;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #d8e9c5;
+    font-size: 1.1rem;
+}
+
+.auth-showcase-label,
+.auth-showcase-number {
+    color: rgba(238, 245, 229, 0.7);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+}
+
+.auth-showcase-content h1 {
+    margin: 1rem 0 1rem;
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: clamp(2.3rem, 4vw, 3.25rem) !important;
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 1.1 !important;
+}
+
+.auth-showcase-content h1 em {
+    color: #c2d8a2;
+    font-weight: 500;
+}
+
+.auth-showcase-content > p {
+    max-width: 325px;
+    color: rgba(244, 247, 238, 0.76);
+    font-size: 0.84rem;
+    line-height: 1.8;
+}
+
+.auth-showcase-bottom {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-top: 2rem;
+    color: rgba(244, 247, 238, 0.78);
+    font-size: 0.7rem;
+}
+
+.showcase-line {
+    width: 28px;
+    height: 1px;
+    background: #b8d295;
+}
+
+.auth-showcase-number {
+    position: relative;
+    z-index: 1;
+}
+
+.login-card-luxury {
+    display: flex;
+    max-width: none;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: clamp(1.5rem, 4vw, 3.3rem);
+}
+
+.login-card-top {
+    padding: 0.4rem 0 1.25rem;
+    background: none;
+    text-align: left;
+}
+
+.login-emblem {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.login-card-top .plantdoc-hero-badge {
+    padding: 0.35rem 0.7rem;
+    border-color: #e0e9d9;
+    background: #f1f5ed;
+    color: #456746;
+    font-size: 0.66rem;
+}
+
+.admin-login-badge {
+    border-color: #e2e8e5 !important;
+    background: #f2f5f3 !important;
+    color: #41674f !important;
+}
+
+.login-card-top .plantdoc-hero-badge i {
+    color: inherit !important;
+}
+
+.login-title {
+    margin-top: 0.25rem;
+    color: #1c3929;
+    font-size: 1.75rem !important;
+    letter-spacing: -0.035em;
+}
+
+.login-subtitle {
+    color: #778278;
+    font-size: 0.78rem;
+}
+
+.login-card-luxury .card-body {
+    padding: 0 !important;
+}
+
+.login-card-luxury .form-label {
+    color: #526256 !important;
+    font-size: 0.66rem !important;
+    letter-spacing: 0.09em !important;
+}
+
+.login-card-luxury .form-control-sleek {
+    min-height: 44px;
+    border: 1px solid #dfe6dc;
+    border-radius: 5px;
+    font-size: 0.82rem;
+}
+
+.login-card-luxury .input-icon-wrapper i {
+    font-size: 0.8rem;
+}
+
+.login-card-luxury .btn-plantdoc-primary,
+.login-card-luxury .btn-plantdoc-outline {
+    min-height: 44px;
+    border-radius: 5px !important;
+    font-size: 0.8rem !important;
+}
+
+.login-card-luxury .btn-plantdoc-outline {
+    border-color: #dfe6dc !important;
+}
+
+.login-card-luxury .bg-light {
+    border-color: #e8ede5 !important;
+    background: #f7f9f5 !important;
+}
+
+.login-card-luxury .admin-security-note {
+    font-size: 0.66rem;
+}
+
+@media (max-width: 767.98px) {
+    .auth-page {
+        min-height: auto;
+        padding: 1.1rem 0.8rem 2rem !important;
+    }
+
+    .auth-layout {
+        min-height: auto;
+        grid-template-columns: 1fr;
+    }
+
+    .auth-showcase {
+        min-height: 260px;
+        padding: 1.2rem 1.35rem;
+    }
+
+    .auth-showcase-content {
+        max-width: 460px;
+        padding: 1.5rem 0 1rem;
+    }
+
+    .auth-showcase-mark {
+        width: 36px;
+        height: 36px;
+        margin-bottom: 1rem;
+    }
+
+    .auth-showcase-content h1 {
+        margin: 0.6rem 0;
+        font-size: 2rem !important;
+    }
+
+    .auth-showcase-content h1 br {
+        display: none;
+    }
+
+    .auth-showcase-content > p {
+        margin-bottom: 0;
+    }
+
+    .auth-showcase-bottom,
+    .auth-showcase-number {
+        display: none;
+    }
+
+    .login-card-luxury {
+        padding: 1.5rem 1.35rem;
+    }
+}
+
+.auth-layout {
+    width: min(100%, 920px);
+    min-height: 520px;
+    grid-template-columns: minmax(0, 0.82fr) minmax(390px, 1.18fr);
+}
+
+.auth-showcase {
+    min-height: 520px;
+}
+
+.login-card-luxury {
+    padding: clamp(1.75rem, 4vw, 3.6rem);
+}
+
+.login-overline {
+    color: #71846e;
+}
+
+.login-card-top .login-title {
+    margin-top: 0.75rem;
+    font-size: 1.9rem !important;
+}
+
+.login-card-top .login-subtitle {
+    max-width: 310px;
+    line-height: 1.65;
+}
+
+.login-card-luxury .card-body .form-label {
+    margin-bottom: 0.45rem;
+    color: #405244 !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.login-card-luxury .form-control-sleek {
+    min-height: 48px;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+}
+
+.auth-password-toggle {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #638055;
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.auth-password-toggle:hover {
+    color: #31563b;
+}
+
+.auth-submit {
+    min-height: 48px !important;
+    justify-content: space-between !important;
+    padding: 0.75rem 1rem !important;
+}
+
+.auth-create-account {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3rem;
+    margin-top: 1.35rem;
+    padding-top: 1.15rem;
+    border-top: 1px solid #edf0e9;
+    color: #7b867d;
+    font-size: 0.75rem;
+}
+
+.auth-create-account a {
+    color: #326647;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.auth-create-account a:hover {
+    color: #1b4332;
+    text-decoration: underline;
+}
+
+.auth-create-account a i {
+    margin-left: 0.15rem;
+    font-size: 0.62rem;
+}
+
+.auth-admin-access {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-top: 0.85rem;
+    color: #879188;
+    font-size: 0.7rem;
+}
+
+.auth-admin-access > i {
+    margin-right: 0.1rem;
+    color: #71846e;
+    font-size: 0.66rem;
+}
+
+.auth-admin-access a {
+    color: #456b50;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-admin-access a:hover {
+    color: #1b4332;
+    text-decoration: underline;
+}
+
+.nav-create-account {
+    padding: 7px 15px !important;
+    font-size: 0.78rem !important;
+}
+
+@media (max-width: 767.98px) {
+    .auth-layout {
+        min-height: auto;
+        grid-template-columns: 1fr;
+    }
+
+    .auth-showcase {
+        min-height: 250px;
+    }
+}

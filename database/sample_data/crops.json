@@ -1,0 +1,56 @@
+[
+  {
+    "_id": "crop_tomato",
+    "type": "crop",
+    "crop_name": "Tomato",
+    "scientific_name": "Solanum lycopersicum",
+    "icon": "🍅",
+    "description": "Major commercial horticultural crop susceptible to fungal leaf spots and blights during humid seasons.",
+    "supported_diseases": ["Tomato Early Blight", "Tomato Late Blight", "Tomato Yellow Leaf Curl Virus", "Healthy Tomato Leaf"]
+  },
+  {
+    "_id": "crop_potato",
+    "type": "crop",
+    "crop_name": "Potato",
+    "scientific_name": "Solanum tuberosum",
+    "icon": "🥔",
+    "description": "Essential tuber crop vulnerable to rapid defoliation under overcast and wet weather conditions.",
+    "supported_diseases": ["Potato Early Blight", "Potato Late Blight", "Healthy Potato Leaf"]
+  },
+  {
+    "_id": "crop_corn",
+    "type": "crop",
+    "crop_name": "Corn / Maize",
+    "scientific_name": "Zea mays",
+    "icon": "🌽",
+    "description": "Cereal grain widely cultivated, affected by foliar fungal rusts and blights.",
+    "supported_diseases": ["Corn Common Rust", "Northern Corn Leaf Blight", "Healthy Corn Leaf"]
+  },
+  {
+    "_id": "crop_apple",
+    "type": "crop",
+    "crop_name": "Apple",
+    "scientific_name": "Malus domestica",
+    "icon": "🍎",
+    "description": "Temperate fruit crop where fungal scab reduces tree vigor and marketability.",
+    "supported_diseases": ["Apple Scab", "Apple Black Rot", "Healthy Apple Leaf"]
+  },
+  {
+    "_id": "crop_grape",
+    "type": "crop",
+    "crop_name": "Grape",
+    "scientific_name": "Vitis vinifera",
+    "icon": "🍇",
+    "description": "High-value vineyard fruit prone to black rot and powdery mildew in warm rainy spells.",
+    "supported_diseases": ["Grape Black Rot", "Grape Esca (Black Measles)", "Healthy Grape Leaf"]
+  },
+  {
+    "_id": "crop_pepper",
+    "type": "crop",
+    "crop_name": "Bell Pepper / Chilli",
+    "scientific_name": "Capsicum annuum",
+    "icon": "🫑",
+    "description": "Solanaceous spice and vegetable crop susceptible to bacterial spot defoliation.",
+    "supported_diseases": ["Pepper Bacterial Spot", "Healthy Pepper Leaf"]
+  }
+]

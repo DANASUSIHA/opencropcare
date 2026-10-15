@@ -1,0 +1,7 @@
+# OpenCropCare Apache Rewrite Rules
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # If not requesting public directly, rewrite to public
+    RewriteCond %{REQUEST_URI} !^/opencropcare/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
